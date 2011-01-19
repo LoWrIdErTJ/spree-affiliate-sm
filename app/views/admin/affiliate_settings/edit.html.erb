@@ -1,0 +1,33 @@
+<%= render :partial => 'admin/shared/configuration_menu' %>
+
+<h1><%= t('affiliate_settings') %></h1>
+
+<% form_tag(admin_update_affiliate_settings_path, :method => :put) do -%>
+
+   <p>
+	<label><%= t("cookie_life_span") %></label>
+	<%= text_field_tag('preferences[cookie_life_span]', Spree::Config[:cookie_life_span]) %>
+  </p>
+   <p>
+	<label><%= t("claimable_amount") %></label>
+	<%= text_field_tag('preferences[claimable_amount]', Spree::Config[:claimable_amount]) %>
+  </p>
+
+   <p>
+	<label><%= t("referal_incentive") %></label>
+	<%= text_field_tag('preferences[referal_incentive]', Spree::Config[:referal_incentive]) %>
+  </p>
+
+   <p>
+	<label><%= t("affiliate_payment_request") %></label>
+	<%= text_field_tag('preferences[affiliate_payment_request]', Spree::Config[:affiliate_payment_request]) %>
+  </p>
+
+  <p class="form-buttons">
+    <%= button t('update') %>
+    <%= t("or") %> <%= link_to t("cancel"), admin_affiliate_settings_url %>
+  </p>
+<% end -%>
+
+
+

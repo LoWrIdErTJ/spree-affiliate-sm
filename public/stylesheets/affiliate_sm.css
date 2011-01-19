@@ -1,0 +1,41 @@
+.info_items a.web{
+  padding-left: 20px;
+  padding-bottom: 3px;
+  background-image: url(../images/spree_affiliate_sm/web.png);
+  background-repeat: no-repeat;
+}
+
+.info_items a.email {
+  padding-left: 20px;
+  background-image: url(../images/spree_affiliate_sm/email.png);
+  background-repeat: no-repeat;
+}
+
+.info_items span.phone {
+  padding-left: 20px;
+  padding-bottom: 3px;
+  background-image: url(../images/spree_affiliate_sm/phone.png);
+  background-repeat: no-repeat;
+}
+h2.affiliate_link {
+  display: inline;
+  margin-right:5px;
+}
+div#user_details {
+  float:left;
+  width:70%;
+}
+div#affiliate_details {
+  float:right;
+  width:30%;
+}
+div#user_profile {
+  display:block;
+  clear:both;
+  width:100%;
+  float:none;
+}
+.subheading {
+  font-size:120%;
+  color:#E65C00;
+}

@@ -1,0 +1,9 @@
+<tr>
+    <%
+       rowId = "affiliate_credit[id_"+@index.to_s+"]"
+       @index = @index+1
+    %>
+    <input type="hidden" id="affiliate_credit" name="<%= rowId %>" value="<%= affiliate_credit.id %>" />
+    <td><%=affiliate_credit.comment %></td>
+    <td><%=number_to_currency affiliate_credit.amount %></td>
+</tr>

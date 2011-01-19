@@ -1,0 +1,10 @@
+<tr>
+    <%
+       rowId = "affiliate_earning[id_"+@index.to_s+"]"
+       @index = @index+1
+    %>
+    <input type="hidden" id="affiliate_earning" name="<%= rowId %>" value="<%= affiliate_earning.id %>" />
+    <td><%=affiliate_earning.order.number %></td>
+    <td><%=affiliate_earning.order.state %></td>
+    <td><%=number_to_currency affiliate_earning.amount %></td>
+</tr>

@@ -1,0 +1,85 @@
+<h1><%= t("user_account") %></h1>
+
+<table>
+  <tr>
+    <th><%= t("email") %></th>
+    <td>
+      <%= @user.email %>
+    </td>
+  </tr>
+  <tr>
+    <th><%= t("user_affiliate_url") %></th>
+    <td>
+      <%=request.url.chomp(request.request_uri)%>/<%= @user.id %>
+    </td>
+  </tr>
+  <tr>
+    <th><%= t("roles") %></th>
+    <td>
+      <%= list_roles(@user) %>
+    </td>
+  </tr>
+</table>
+
+<p>
+  <%= link_to_edit @user %> &nbsp;
+  <%= link_to t('back'), collection_url %>
+</p>
+
+<%= form_for :affiliates, :url => { :action => "pay_user", :controller => "/affiliates" } do |f| %>
+
+    <%= hidden_field(:user, :total_earnings) %>
+    <%= hidden_field(:user, :id) %>
+
+    <p class="form-buttons">
+        <% total_earning = @user.total_earnings
+           if (total_earning >= Spree::Config[:claimable_amount].to_d) %>
+            <%= button t('pay_user')+" "+(number_to_currency total_earning) %>
+        <% end %>
+    </p>
+
+    <h2><%= t('referral_earnings') %></h2>
+    <table class="index">
+      <thead>
+      <tr>
+          <th><%=t('order_number') %></th>
+          <th><%=t('status') %></th>
+          <th><%=t('amount') %></th>
+      </tr>
+      </thead>
+      <tbody id="earnings_row">
+            <% @index=0 %>
+            <%@user.affiliate_earnings.unpaid.each do |earning| %>
+              <%= render :partial => 'affiliate_earning', :locals => {:affiliate_earning => earning} -%>
+            <% end %>
+
+      </tbody>
+    </table>
+
+
+    <h2 style=""><%= t('referral_credits') %></h2>
+    <table class="index">
+      <thead>
+      <tr>
+          <th><%=t('description') %></th>
+          <th><%=t('amount') %></th>
+      </tr>
+      </thead>
+      <tbody id="credits_row">
+            <% @index=0 %>
+
+          <%@user.affiliate_credits.unpaid.each do |credit| %>
+            <%= render :partial => 'affiliate_credit', :locals => {:affiliate_credit => credit} -%>
+          <% end %>
+
+      </tbody>
+    </table>
+
+<% end %>
+
+<p id="new_var_link">
+  <%= link_to icon('add') + ' ' + t("give_credit"), new_admin_user_affiliate_credit_url(@user), :remote => :true, 'data-update' => 'affiliate-credit', :class => 'iconlink' %>
+</p>
+<%= image_tag "spinner.gif", :plugin=>"spree", :style => "display:none", :id => 'busy_indicator' %>
+<div id="affiliate-credit"></div>
+

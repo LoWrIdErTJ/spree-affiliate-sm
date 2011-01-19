@@ -1,0 +1,17 @@
+<% form_for :affiliate_credit, :url => { :action => "update" } do |f| %>    
+  <%= f.error_messages %>
+
+  <p><%= f.label :comment, t("description") %><br /><%= f.text_field :comment %></p>
+  <p><%= f.label :amount, t("amount") %><br /><%= f.text_field :amount %></p>
+  <input type="hidden" id="affiliate_credit_user_id" name="affiliate_credit[user_id]" value="<%= @user.id %>" />
+  <input type="hidden" id="affiliate_credit_status" name="affiliate_credit[status]" value="created" />
+
+    <p class="form-buttons">
+      <%= button t('update') %>
+      <%= t("or") %> <%= link_to t("cancel"), admin_user_url(@user) %>
+    </p>
+
+
+
+<% end %>
+

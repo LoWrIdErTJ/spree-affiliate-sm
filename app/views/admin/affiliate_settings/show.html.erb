@@ -1,0 +1,30 @@
+<%= render :partial => 'admin/shared/configuration_menu' %>
+
+<h1><%= t("affiliate_settings") %></h1>
+
+<table>
+  <tr>
+    <th scope="row"><%= t("cookie_life_span") %>:</th>
+    <td><%=  Spree::Config[:cookie_life_span] %></td>
+  </tr>
+
+  <tr>
+    <th scope="row"><%= t("claimable_amount") %>:</th>
+    <td><%=  Spree::Config[:claimable_amount] %></td>
+  </tr>
+
+  <tr>
+    <th scope="row"><%= t("referal_incentive") %>:</th>
+    <td><%=  Spree::Config[:referal_incentive] %></td>
+  </tr>
+
+  <tr>
+    <th scope="row"><%= t("affiliate_payment_request") %>:</th>
+    <td><%=  Spree::Config[:affiliate_payment_request] %></td>
+  </tr>
+
+</table>
+
+
+
+<p><%= link_to_with_icon 'edit', t("edit"), admin_edit_affiliate_settings_path %></p>

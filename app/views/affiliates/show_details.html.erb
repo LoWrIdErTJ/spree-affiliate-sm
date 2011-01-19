@@ -1,0 +1,48 @@
+<%  total_earning = @user.total_earnings
+    earnings = @user.affiliate_earnings.unpaid
+    credits = @user.affiliate_credits.unpaid %>
+
+<h3 class="affiliate_link"><%= t("my_earnings") %> <%= number_to_currency total_earning %></h3>
+<% if (total_earning >= Spree::Config[:claimable_amount].to_f) %>
+  <%= link_to t('request_payment'), :controller => "affiliates", :action => "request_payment", :id => @user %>
+  &nbsp;&nbsp;<%= link_to t('go_back'), :controller => "users", :action => "show", :id => @user %>
+<% end %>
+<p />
+
+<table class="order-summary" width="545">
+    <thead>
+      <tr>
+        <th><%= t("order_number") %></th>
+        <th><%= t("order_date") %></th>
+        <th><%= t("total") %></th>
+      </tr>
+    </thead>
+    <tbody>
+        <% earnings.each do |earning|
+            order = earning.order        %>
+          <tr class="<%= cycle('even', 'odd') %>">
+            <td><%= order.number %></td>
+            <td><%=order.created_at.to_date%></td>
+            <td><%= number_to_currency earning.amount %></td>
+          </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<h3 style=""><%= t('referral_credits') %></h3>
+<table class="order-summary" width="545">
+    <thead>
+      <tr>
+        <th><%= t("description") %></th>
+        <th><%= t("total") %></th>
+      </tr>
+    </thead>
+    <tbody>
+        <% credits.each do |credit|     %>
+          <tr class="<%= cycle('even', 'odd') %>">
+            <td><%= credit.comment %></td>
+            <td><%= number_to_currency credit.amount %></td>
+          </tr>
+        <% end %>
+    </tbody>
+</table>
