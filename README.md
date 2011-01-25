@@ -15,6 +15,4 @@ rake spree_affiliate_sm:install
 
 ## Credits
 
-Developed by [Sticker Mule](http://www.stickermule.com/).  
-
 Copyright (c) 2011 [Sticker Mule](http://www.stickermule.com/), released under the New BSD License.
