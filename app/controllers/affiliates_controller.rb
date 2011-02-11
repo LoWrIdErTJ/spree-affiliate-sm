@@ -2,13 +2,13 @@ class AffiliatesController  < Spree::BaseController
   rescue_from  Errno::ENOENT, :with => :render_404
 
   def index
-    cookie = cookies['sm_referrerid']
+    cookie = cookies[Spree::Config[:cookie_name]]
     if !cookie
-      cookies['sm_referrerid'] = { :value => params[:user_id],
+      cookies[Spree::Config[:cookie_name]] = { :value => params[:user_id],
                            :expires => Time.now+Spree::Config[:cookie_life_span].to_i.day }
-      puts 'created cookie for referrer -'+cookies['sm_referrerid']+'|'
+      puts 'created cookie for referrer -'+cookies[Spree::Config[:cookie_name]]+'|'
     else
-      puts 'found cookie for referrer -'+cookies['sm_referrerid']+'|'
+      puts 'found cookie for referrer -'+cookies[Spree::Config[:cookie_name]]+'|'
     end
     redirect_to("/", {:status => 301}) 
   end
@@ -27,7 +27,7 @@ class AffiliatesController  < Spree::BaseController
   end
 
   def delete_cookie
-    cookies.delete 'sm_referrerid'
+    cookies.delete Spree::Config[:cookie_name]
     puts 'cookie deleted'
   end
 

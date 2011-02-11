@@ -8,6 +8,10 @@ module SpreeAffiliateSm
       Dir.glob(File.join(File.dirname(__FILE__), "../app/**/*_decorator*.rb")) do |c|
         Rails.env.production? ? require(c) : load(c)
       end
+
+      AppConfiguration.class_eval do
+        preference :cookie_name, :string, :default => 'sm_referrerid'
+      end
     end #self.activate
     
     config.autoload_paths += %W(#{config.root}/lib)

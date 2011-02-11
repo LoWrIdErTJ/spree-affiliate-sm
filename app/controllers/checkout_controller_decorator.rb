@@ -1,7 +1,7 @@
 CheckoutController.class_eval do
   private
   def process_affiliate_earning
-    cookie = cookies['sm_referrerid']
+    cookie = cookies[Spree::Config[:cookie_name]]
     if cookie && cookie.to_i != @order.user_id
       @order.affiliate_earning = AffiliateEarning.create
       affiliate = @order.affiliate_earning

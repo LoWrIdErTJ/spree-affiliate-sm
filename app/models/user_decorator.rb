@@ -16,18 +16,10 @@ User.class_eval do
     end
   end
   def earnings_total
-      total = 0
-      self.affiliate_earnings.unpaid.each do |earning|
-        total = total+earning.amount
-      end
-      total
+      @total_earnings||= self.affiliate_earnings.unpaid.sum(:amount)
   end
   def credits_total
-      total = 0
-      self.affiliate_credits.unpaid.each do |credit|
-        total = total+credit.amount
-      end
-      total
+      @total_credits ||= self.affiliate_credits.unpaid.sum(:amount)
   end
   def total_earnings
       self.earnings_total + self.credits_total
