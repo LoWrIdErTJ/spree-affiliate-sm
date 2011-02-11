@@ -8,10 +8,15 @@ A simple affiliate tracking extension for Spree.  Provides the following functio
 4. Administrator's can credit / debit a user's affiliate account balance. 
 5. Registered users can view basic statistics about their affiliate performance. 
 
-## Notes
+## Implementation
 
-Get public and migration files with:
-rake spree_affiliate_sm:install
+* Get public and migration files with:
+    rake spree_affiliate_sm:install
+* add the following line to in AppConfiguration:
+    preference :cookie_name, :string, :default => 'app_referrerid'
+* add to spree_configuration.rb
+    Spree::Config.set :cookie_name => "app_referrerid"
+
 
 ## Credits
 
