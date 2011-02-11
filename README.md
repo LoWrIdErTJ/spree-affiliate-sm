@@ -11,10 +11,15 @@ A simple affiliate tracking extension for Spree.  Provides the following functio
 ## Implementation
 
 * Get public and migration files with:
+
     rake spree_affiliate_sm:install
+
 * add the following line to in AppConfiguration:
+
     preference :cookie_name, :string, :default => 'app_referrerid'
+
 * add to spree_configuration.rb
+
     Spree::Config.set :cookie_name => "app_referrerid"
 
 
